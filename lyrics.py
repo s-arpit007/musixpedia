@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 base_url = "http://api.genius.com"
-headers = {'Authorization' : 'Bearer uGSGWVuUcBn4CXsTeIgqVBPg7xoTTdVWUpO5w_PNSU5INwEyddPb3jyILAvixUfr', 'User-Agent' : 'curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)'}
+headers = {'Authorization' : 'Bearer ACCESS_TOKEN', 'User-Agent' : 'curl/7.9.8 (i686-pc-linux-gnu) libcurl 7.9.8 (OpenSSL 0.9.6b) (ipv6 enabled)'}
 
 
 def lyrics(url):
