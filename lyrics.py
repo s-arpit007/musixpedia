@@ -27,5 +27,9 @@ if __name__ == "__main__":
             break
     if song_info:
         song_url = song_info["result"]["url"]
-    lyric = lyrics(song_url)
-    print(lyric)
+    try:
+        lyric = lyrics(song_url)
+    except NameError:
+        print("artist name or song title not found...")
+    else:
+        print(lyric)
