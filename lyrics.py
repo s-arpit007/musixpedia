@@ -27,7 +27,6 @@ if __name__ == "__main__":
             break
     if song_info:
         song_url = song_info["result"]["url"]
-
     try:
         lyric = lyrics(song_url)
     except NameError:
