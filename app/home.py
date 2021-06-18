@@ -2,12 +2,9 @@ from tempfile import gettempdir
 from flask import Flask, render_template
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-
-from utils import *
+from app import app
+from app.utils import *
 from flask_session import Session
-
-
-app = Flask(__name__)
 
 
 if app.config["DEBUG"]:
