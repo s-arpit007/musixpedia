@@ -1,9 +1,7 @@
-import os
 from tempfile import gettempdir
-from flask import Flask, session, render_template, url_for
+from flask import Flask, render_template
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from werkzeug.utils import redirect
 
 from utils import *
 from flask_session import Session
@@ -29,20 +27,21 @@ Session(app)
 
 
 @app.route("/", methods=["GET", "POST"])
-@login_required
 def index():
-
-    # if session.get("spotify"):
-    #     print("Redirecting to home...")
-    #     return redirect(url_for('home'))
+    print("******INDEX******")
+    print(session)
+    if session.get("spotify"):
+        print("Redirecting to home...")
+        return redirect(url_for('home'))
 
     print("Opening Index page.")
     return render_template('index.html')
 
 
-@app.route("/home", methods=["GET"])
+@app.route("/home", methods=["GET", "POST"])
 @login_required
 def home():
+    print("******HOME*****")
     sp = session['spotify']
     results = sp.current_user_playlists(limit=50)
 
@@ -51,6 +50,7 @@ def home():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    print("*****LOGIN*****")
     scope = 'playlist-read-private'
     auth_manager = SpotifyOAuth(scope=scope, cache_handler=CacheFileHandler())
 
@@ -60,9 +60,9 @@ def login():
     return redirect(url_for('home'))
 
 
-@app.route('/logout', methods=["GET", "POST"])
+@app.route('/logout', methods=["POST"])
 def logout():
-
+    print("******LOGOUT******")
     sp = session['spotify']
     if os.path.exists(sp.auth_manager.cache_handler.cache_path):
         os.remove(sp.auth_manager.cache_handler.cache_path)
