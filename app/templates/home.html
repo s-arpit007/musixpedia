@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for item in results["items"] %}
+                <tr>
+                    <td>{{ item["name"] }}</td>
+                    <td>{{ item["owner"]["display_name"] }}</td>
+                    <td>{{ item["description"] }}</td>
+                </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+<form action="{{ url_for('logout') }}" method="post">
+    <fieldset>
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">Logout</button>
+        </div>
+    </fieldset>
+</form>
