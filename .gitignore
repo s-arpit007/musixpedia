@@ -1,0 +1,6 @@
+app/.cache/*
+.env
+.ipynb_checkpoints/*
+../SpotifyAPI.ipynb
+__pycache__/*
+app/__pycache__/*
