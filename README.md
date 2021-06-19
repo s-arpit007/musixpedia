@@ -34,6 +34,9 @@ It will also provide you different kind of insights into your listening behaviou
      export FLASK_ENV=development
    ```
 3. Install requirements from `requirements.txt`
+   ```buildoutcfg
+      pip install -r requirements.txt
+   ```
 4. Now go to musixpedia directory and run below command:
     ```buildoutcfg
       flask run
