@@ -13,7 +13,9 @@ basedir = os.path.dirname(os.path.realpath(__file__))
 class CacheFileHandler(CacheHandler):
     """
     Handles reading and writing cached Spotify authorization tokens
-    as json files on disk.
+    as json files on disk. In default state, cache files will be created on
+    `musixpedia/app/.cache/..cache` path on your machine, so create the directory
+    if there are errors.
     """
 
     def __init__(self,
