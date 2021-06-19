@@ -24,13 +24,13 @@ class CacheFileHandler(CacheHandler):
              * cache_path: May be supplied, will otherwise be generated
                            (takes precedence over `username`)
              * username: May be supplied or set as environment variable
-                         (will set `cache_path` to `.cache-{username}`)
+                         (will set `cache_path` to `..cache-{username}`)
         """
 
         if cache_path:
             self.cache_path = cache_path
         else:
-            cache_path = os.path.join(basedir, "cache", ".cache")
+            cache_path = os.path.join(basedir, ".cache", "..cache")
             if username:
                 cache_path += "-" + str(username)
             self.cache_path = cache_path
@@ -47,22 +47,20 @@ class CacheFileHandler(CacheHandler):
 
         except IOError as error:
             if error.errno == errno.ENOENT:
-                print("cache does not exist at: %s", self.cache_path)
+                print(".cache does not exist at: %s", self.cache_path)
             else:
-                print("Couldn't read cache at: %s", self.cache_path)
+                print("Couldn't read .cache at: %s", self.cache_path)
 
         return token_info
 
     def save_token_to_cache(self, token_info):
-        print("SAVING TOKEN INFO:", token_info)
         try:
             print("Writing Cache File at: ", self.cache_path)
             f = open(self.cache_path, "w")
             f.write(json.dumps(token_info))
             f.close()
-            print("DONE")
         except IOError:
-            print("Couldn't write token to cache at: %s", self.cache_path)
+            print("Couldn't write token to .cache at: %s", self.cache_path)
 
 
 def login_required(f):
