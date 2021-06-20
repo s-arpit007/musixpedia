@@ -153,7 +153,8 @@ Otherwise, if you keep them at the same port, you will get an error saying _Addr
    sudo systemctl reload apache2.service
    ```
    Now, you should be able to see the site at `http://localhost/`
-* You can find the error/service logs at `/var/log/apache2/`
+* You can find the error/service/access logs at `/var/log/apache2/`
+* Give owner permissions to `APACHE_RUN_USER` & `APACHE_RUN_GROUP` to `musixpedia/.cache/*` folder to be able to manage access tokens easily. Username for `APACHE_RUN_USER` & `APACHE_RUN_GROUP` can be found in `/etc/apache2/envvars` file.
 
 #### TODO
 1. URI redirect for spotify login is not working in apache mode. Error: Address already in use.
