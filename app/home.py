@@ -1,11 +1,11 @@
 from tempfile import gettempdir
-from flask import Flask, render_template
+from flask import Flask, render_template, session, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from app import app
 from app.utils import *
 from flask_session import Session
-
+from werkzeug.utils import redirect
 
 if app.config["DEBUG"]:
     @app.after_request
@@ -47,12 +47,16 @@ def home():
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
+    """
+    :TODO: close login window after successful login
+    :return:
+    """
     print("*****LOGIN*****")
-    scope = 'playlist-read-private'
+    scope = get_scopes()
     auth_manager = SpotifyOAuth(scope=scope, cache_handler=CacheFileHandler())
 
-    sp = spotipy.Spotify(auth_manager=auth_manager)
-    session['spotify'] = sp
+    spotify = spotipy.Spotify(auth_manager=auth_manager)
+    session['spotify'] = spotify
 
     return redirect(url_for('home'))
 
