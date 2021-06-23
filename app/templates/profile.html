@@ -1,7 +1,8 @@
 {{details}}
 <ul>
-    <li><a href="https://open.spotify.com/user/sarpit600">{{details["display_name"]}}</a></li>
+    <li><a href="{{details['external_urls']['spotify']}}">{{details["display_name"]}}</a></li>
     <li>Follower: {{details["followers"]["total"]}}</li>
+    <li><img src="{{details['images'][0]['url']}}" alt="Arpit Sharma"></li>
     <li>Product: {{details["product"]}}</li>
     <li><a href="{{ url_for('playlists') }}">Playlists</a></li>
 </ul>

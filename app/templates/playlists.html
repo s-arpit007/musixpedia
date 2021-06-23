@@ -9,8 +9,8 @@
     <tbody>
             {% for item in results["items"] %}
                 <tr>
-                    <td>{{ item["name"] }}</td>
-                    <td>{{ item["owner"]["display_name"] }}</td>
+                    <td><a href="{{ url_for('playlist_details', playlist_id=item['id'])}}">{{ item["name"] }}</a></td>
+                    <td><a href="{{item['owner']['external_urls']['spotify']}}">{{ item["owner"]["display_name"] }}</a></td>
                     <td>{{ item["description"] }}</td>
                 </tr>
             {% endfor %}

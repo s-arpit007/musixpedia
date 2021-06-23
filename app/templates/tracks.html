@@ -1,0 +1,26 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Album</th>
+            <th>Artists</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for item in results["tracks"]["items"] %}
+                <tr>
+                    <td><a href="{{ url_for('track_details', track_id=item['track']['id']) }}">{{ item["track"]["name"] }}</a></td>
+                    <td><a href="{{ url_for('album_details', album_id=item['track']['album']['id']) }}">{{ item['track']['album']['name'] }}</a></td>
+                    {% for artist in item["track"]["artists"] %}<td><a href="{{ url_for('artist_details', artist_id=artist['id']) }}">{{artist['name']}}</a></td>{% endfor %}
+                </tr>
+            {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('profile') }}">Profile</a>
+<form action="{{ url_for('logout') }}" method="post">
+    <fieldset>
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">Logout</button>
+        </div>
+    </fieldset>
+</form>

@@ -46,6 +46,47 @@ def playlists():
     return render_template('playlists.html', results=results)
 
 
+@app.route("/playlist/<playlist_id>", methods=["GET", "POST"])
+@login_required
+def playlist_details(playlist_id):
+    print("******Playlist*****", playlist_id)
+    sp = session['spotify']
+    results = sp.playlist(playlist_id=playlist_id)
+
+    return render_template('tracks.html', results=results)
+
+
+@app.route("/track/<track_id>", methods=["GET", "POST"])
+@login_required
+def track_details(track_id):
+    print("******Playlist*****", track_id)
+    sp = session['spotify']
+    results = sp.track(track_id=track_id)
+
+    return render_template('track.html', results=results)
+
+
+@app.route("/album/<album_id>", methods=["GET", "POST"])
+@login_required
+def album_details(album_id):
+    print("******Album*****", album_id)
+    sp = session['spotify']
+    results = sp.album(album_id=album_id)
+
+    return render_template('album.html', results=results)
+
+
+@app.route("/artist/<artist_id>", methods=["GET", "POST"])
+@login_required
+def artist_details(artist_id):
+    print("******Artist*****", artist_id)
+    sp = session['spotify']
+    results = sp.artist(artist_id=artist_id)
+
+    return render_template('artist.html', results=results)
+
+
+
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """
