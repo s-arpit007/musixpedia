@@ -1,3 +1,4 @@
+import os
 from tempfile import gettempdir
 from flask import Flask, render_template, session, url_for
 import spotipy
@@ -29,20 +30,20 @@ def index():
     print(session)
     if session.get("spotify"):
         print("Redirecting to home...")
-        return redirect(url_for('home'))
+        return redirect(url_for('profile'))
 
     print("Opening Index page.")
     return render_template('index.html')
 
 
-@app.route("/home", methods=["GET", "POST"])
+@app.route("/playlists", methods=["GET", "POST"])
 @login_required
-def home():
+def playlists():
     print("******HOME*****")
     sp = session['spotify']
     results = sp.current_user_playlists(limit=50)
 
-    return render_template('home.html', results=results)
+    return render_template('playlists.html', results=results)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -58,7 +59,15 @@ def login():
     spotify = spotipy.Spotify(auth_manager=auth_manager)
     session['spotify'] = spotify
 
-    return redirect(url_for('home'))
+    return redirect(url_for('profile'))
+
+
+@app.route('/me', methods=['GET', 'POST'])
+@login_required
+def profile():
+    details = session["spotify"].me()
+
+    return render_template('profile.html', details=details)
 
 
 @app.route('/logout', methods=["POST"])

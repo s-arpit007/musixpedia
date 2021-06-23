@@ -112,14 +112,14 @@ Otherwise, if you keep them at the same port, you will get an error saying _Addr
             |__server.wsgi
             |__README.md
             |__app/
-            |____init__.py
-            |__home.py
-            |__utils.py
-            |__static/
-            |__templates/
-               |__index.html
-               |__home.html
-               |__layout.html
+                |____init__.py
+                |__home.py
+                |__utils.py
+                |__static/
+                |__templates/
+                    |__index.html
+                    |__home.html
+                    |__layout.html
    ```
 6. Configure a new application with apache2
    ```commandline

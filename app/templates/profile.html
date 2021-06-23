@@ -1,0 +1,14 @@
+{{details}}
+<ul>
+    <li><a href="https://open.spotify.com/user/sarpit600">{{details["display_name"]}}</a></li>
+    <li>Follower: {{details["followers"]["total"]}}</li>
+    <li>Product: {{details["product"]}}</li>
+    <li><a href="{{ url_for('playlists') }}">Playlists</a></li>
+</ul>
+<form action="{{ url_for('logout') }}" method="post">
+    <fieldset>
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">Logout</button>
+        </div>
+    </fieldset>
+</form>
