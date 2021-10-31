@@ -23,7 +23,13 @@ print(sp.auth_manager.get_access_token(as_dict=False))
 results = sp.current_user_playlists(limit=50)
 
 for i, result in enumerate(results["items"]):
-    print(i+1, item["name"])
+    print(i+1, result["name"])
+
+id = input("Playlist ID:")
+results = sp.playlist(playlist_id=id)
+    
+for i, result in enumerate(results["tracks"]["items"]):
+    print(i+1, result["track"]["name"], result['track']['album']['name'])
     
 if os.path.exists(sp.auth_manager.cache_handler.cache_path):
     os.remove(sp.auth_manager.cache_handler.cache_path)
