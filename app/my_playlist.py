@@ -20,7 +20,11 @@ sp = Spotify(auth_manager=auth_manager)
 print("Done with Spotify")
 print(sp.auth_manager.get_access_token(as_dict=False))
 
-# results = sp.current_user_playlists(limit=50)
+results = sp.current_user_playlists(limit=50)
+
+for i, result in enumerate(results["items"]):
+    print(i+1, item["name"])
+    
 if os.path.exists(sp.auth_manager.cache_handler.cache_path):
     os.remove(sp.auth_manager.cache_handler.cache_path)
 else:
